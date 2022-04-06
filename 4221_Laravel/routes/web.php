@@ -20,3 +20,7 @@ Route::get('/', function () {
 Route::get('4221_Test', function () {
     return view('4221_Test');
 });
+
+Route::get("badLogin", function() {
+    return view("badForm");
+});
