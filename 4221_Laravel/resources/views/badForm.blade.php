@@ -26,7 +26,9 @@
             
             <div id="backEpic">
                 <div id="centerBox">
-                    <form action='/user/login' method='POST'>
+                    <form action='/badForm/login' method='POST'>
+                        @csrf
+
                         <div class="dontFeelLikeLabel">
                             <p>Username: </p>
                         </div>
@@ -40,7 +42,7 @@
                         </div>
                         
                         <div>
-                            <input class='passButton' type='password' name='password' id='password' />
+                            <input class='passButton' type='passw' name='passw' id='passw' />
                         </div>
                         <br>
                         <br>

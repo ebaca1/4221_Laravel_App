@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+// Controller for login
+use App\Http\Controllers\loginController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,6 +24,8 @@ Route::get('4221_Test', function () {
     return view('4221_Test');
 });
 
-Route::get("badLogin", function() {
+Route::get("badForm", function() {
     return view("badForm");
 });
+
+Route::post('/badForm/login', [loginController::class, 'badLogin']);
