@@ -28,4 +28,10 @@ Route::get("badForm", function() {
     return view("badForm");
 });
 
+Route::get("goodForm", function() {
+    return view("goodForm");
+});
+
+Route::post('/goodForm/login', [loginController::class, 'goodLogin']);
+
 Route::post('/badForm/login', [loginController::class, 'badLogin']);

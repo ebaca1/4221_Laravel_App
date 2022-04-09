@@ -4,6 +4,40 @@
         <link rel="stylesheet" href="/css/app.css">
         <meta charset="utf-8">
         <title>Login</title>
+        <style> 
+        body {  
+            background-color: white;  
+        } 
+        img {  
+            width: 200px; 
+            float: left; 
+            margin-right: 10px; 
+        } 
+        footer {
+            position: fixed;
+            padding: 10px 10px 0px 10px;
+            bottom: 0;
+            width: 100%;
+            height: 40px; 
+        }
+        button {
+            border: none;
+            color: black;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+        #pic {
+            width: 600px;
+        }
+        #centerBox {
+            
+        }
+</style> 
     </head>
     <body>
         <main>
@@ -20,16 +54,16 @@
                     </div>
                 </div>
             </div>
-            <img src="/images/FREEIPAD.png" id="freeIpad" alt="CLICK FOR FREE IPAD" width="925" height="300" />
+
 
             <div class='login'>
                 <p>Login to start flipping tables!</p>
             </div>
             
             
-            <div id="backEpic">
+            <div id="backEpic" align="center">
                 <div id="centerBox">
-                    <form action='/badForm/login' method='POST'>
+                    <form action='/goodForm/login' method='POST'>
                         @csrf
 
                         <div class="dontFeelLikeLabel">
@@ -61,8 +95,7 @@
                 </div>
             </div>
 
-            <img src="/images/Epic2008.png" id="freeIpad" alt="CLICK TO WIN!!!" width="925" height="300" />
-
+            
             <footer class="footer">
                 <p id="item1">&copy; UNCC Computing & Informatics 2022 : Joe, Shruti, Eric  </p>
                 <p>Group 3: The TableFlippers</p>
