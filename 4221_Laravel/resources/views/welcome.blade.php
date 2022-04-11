@@ -42,11 +42,11 @@
                        <h1>TABLE FLIPPERS INC</h1>
                     </div>
                 </div>
-            </div>
+        </div>
             
             <img src="/images/Desk_Flip_banner.jpeg" id="homepagepic" alt="" height="600" />
 
-            <div>
+        <div>
                 <h3>Select a table flipping form to fill out!</h3>
                 
                 <a href="/goodForm">

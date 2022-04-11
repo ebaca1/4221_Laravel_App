@@ -16,21 +16,16 @@ use App\Http\Controllers\loginController;
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('4221_Test', function () {
-    return view('4221_Test');
-});
+Route::get('/success', [loginController::class, 'success']);
 
-Route::get("badForm", function() {
-    return view("badForm");
-});
+Route::get('/goodForm', [loginController::class, 'goodForm']);
 
-Route::get("goodForm", function() {
-    return view("goodForm");
-});
+Route::get('/badForm', [loginController::class, 'badForm']);
 
 Route::post('/goodForm/login', [loginController::class, 'goodLogin']);
 

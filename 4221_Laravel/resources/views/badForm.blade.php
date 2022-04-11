@@ -24,6 +24,9 @@
 
             <div class='login'>
                 <p>Login to start flipping tables!</p>
+                @if($error)
+                    <p style="color:tomato">{{$error}}</p>
+                @endif
             </div>
             
             

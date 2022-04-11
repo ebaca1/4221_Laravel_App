@@ -7,41 +7,59 @@ use Illuminate\Support\Facades\DB;
 
 class loginController extends Controller {
 
+    public function badForm() {
+        $error = "";
+        return view('badForm')->with([
+            'error' => $error
+        ]);
+    }
+
     public function badLogin(Request $request) {
-        //mysqli connection
-        $conn = mysqli_connect("localhost", env('DB_USERNAME'), env('DB_PASSWORD'), env('DB_DATABASE'));
         //Get username and password from request
         $username = $request->username;
         $password = $request->passw;
         //Build sql string
-        
+        $vulnerableSql = DB::raw(" Select * FROM users WHERE username ='$username' AND passw ='$password' ");
         /**** Raw sql query - Vulnerable to SQL injection ****/
         
         //Attacker can get in as the first user by typing the following into the username field: someUser' or 1=1 -- \
-            // OR, typing the following into the username: someUser - and password: somePassword' or 1=1 -- \
+            // OR, typing the following
+                //username: someUser
+                //password: somePassword' or 1=1 -- \
 
-        //Attacker can get into aspecific account if they know the username, by entering the following into the username field: aUsername' -- \
-
-        $sql = "Select * FROM users WHERE username = '$username' AND passw = '$password'";
+        //Attacker can get into a specific account if they know the username, by entering the following into the username field: aUsername' -- \
 
         //Run query
-        $query = mysqli_query($conn, $sql);
+        $results = DB::SELECT($vulnerableSql);
 
+        
         //If the login is successful, redirect to the home page
-        if(mysqli_num_rows($query) > 0){
-            return view ('4221_Test');
+        if(!collect($results)->isEmpty()){
+            return view ('success')->with([
+                'results' => $results
+            ]);
         }
         //If the login is unsuccessful, return to badForm page
         else{
-            return redirect ('/badForm');
+            $error = "Authentication Failed: Incorrect Username or Password";
+            return view ('badForm')->with([
+                'error' => $error
+            ]);
         }
+    }
+
+    public function goodForm() {
+        $error = "";
+        return view('goodForm')->with([
+            'error' => $error
+        ]);
     }
 
     public function goodLogin(Request $request) {
         //Get username and password from request
         $username = $request->username;
         $password = $request->passw;
-
+        
         //Laravel Framework's built in query builder - Secure from SQL injection
         $results = DB::table('users')
                      ->where('username', $username)
@@ -49,13 +67,23 @@ class loginController extends Controller {
                      ->get();
 
         //If the login is successful, redirect to the home page
-        if($results){
-            return view ('4221_Test');
+        if(!$results->isEmpty()){
+            return view ('success')->with([
+                'results' => $results
+            ]);
         }
-        //If the login is unsuccessful, return to badForm page
+        //If the login is unsuccessful, return to goodForm page
         else{
-            return redirect ('/badForm');
+            $error = "Authentication Failed: Incorrect Username or Password";
+            return view ('goodForm')->with([
+                'error' => $error
+            ]);
         }
+    }
+   
+
+    public function success() {
+        return redirect ('/');
     }
 
 }
